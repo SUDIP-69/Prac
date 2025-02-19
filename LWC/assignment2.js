@@ -1,40 +1,29 @@
-class ToDoList {
-    constructor() {
-      this.tasks = [];
-    }
-  
-    addTask(task) {
-      if (task.trim() !== "") {
-        this.tasks.push(task);
-        console.log(`Task "${task}" added.`);
-      } else {
-        console.log("Task cannot be empty.");
-      }
-    }
-  
-    removeTask(task) {
-      const index = this.tasks.indexOf(task);
-      if (index !== -1) {
-        this.tasks.splice(index, 1);
-        console.log(`Task "${task}" removed.`);
-      } else {
-        console.log("Task not found.");
-      }
-    }
-  
-    showTasks() {
-      console.log("To-Do List:");
-      this.tasks.forEach((task, index) => {
-        console.log(`${index + 1}. ${task}`);
-      });
-    }
+function addTask() {
+  let taskInput = document.getElementById("taskInput");
+  let taskValue = taskInput.value.trim();
+
+  if (taskValue === "") {
+      alert("Please enter a task.");
+      return;
   }
+
+  let li = document.createElement("li");
   
-  // Example usage
-  const myToDoList = new ToDoList();
-  myToDoList.addTask("Complete JavaScript project");
-  myToDoList.addTask("Review pull requests");
-  myToDoList.showTasks();
-  myToDoList.removeTask("Review pull requests");
-  myToDoList.showTasks();
+  let span = document.createElement("span");
+  span.className = "task-text";
+  span.textContent = taskValue;
+
+  let deleteBtn = document.createElement("button");
+  deleteBtn.className = "delete-btn";
+  deleteBtn.textContent = "Delete";
+  deleteBtn.onclick = function () {
+      li.remove();
+  };
+
+  li.appendChild(span);
+  li.appendChild(deleteBtn);
   
+  document.getElementById("taskList").appendChild(li);
+  taskInput.value = ""; 
+}
+
