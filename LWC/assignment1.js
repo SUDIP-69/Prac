@@ -11,35 +11,54 @@ class Intern {
   
   class GyanSys {
     
-    constructor() {
-      this.interns = new Map();
+    constructor() 
+    {
+      this.interns = new Array();
+      // this.interns = new Map();
     }
   
-    addIntern(intern) {
-      if (this.interns.has(intern.name)) {
-        console.log(`Intern with name "${intern.name}" already exists.`);
-        return;
+    addIntern(intern) 
+    {
+      let flag = 0;
+      for (let i of this.interns)
+      {
+        if(i.name === intern.name)
+        {
+          flag = 1;
+          console.log(`Intern with name "${intern.name}" already exists.`);
+          break;
+        }
       }
-      this.interns.set(intern.name, intern);
-      console.log(`Intern "${intern.name}" added successfully.`);
+
+      if(flag == 0)
+        this.interns.push(intern);
+
+      // if (this.interns.has(intern.name)) {
+      //   console.log(`Intern with name "${intern.name}" already exists.`);
+      //   return;
+      // }
+      // this.interns.set(intern.name, intern);
     }
   
-    showInterns() {
-      console.log("List of Interns:");
-      this.interns.forEach((intern) => {
-        console.log(`Name: ${intern.name}, Department: ${intern.department}, Project: ${intern.project}`);
-      });
+    showInterns() 
+    {
+      console.log("List of Interns:\n");
+
+      for(let i of this.interns)
+        console.log(`Name: ${i.name}\t| Department: ${i.department}\t| Project: ${i.project}`);
+        
+
+      // for (let [i,val] of this.interns)     
+      //     console.log(`Name: ${val.name}\t| Department: ${val.department}\t| Project: ${val.project}`);
     }
   }
   
-  // Create a new GyanSys instance
+
   const gyansys = new GyanSys();
   
-  // Add 3 Interns with different departments and projects
-  gyansys.addIntern(new Intern("Alice", "Software Development", "AI Chatbot"));
-  gyansys.addIntern(new Intern("Bob", "Marketing", "SEO Optimization"));
-  gyansys.addIntern(new Intern("Charlie", "Human Resources", "Employee Engagement"));
+  gyansys.addIntern(new Intern("Nitin", "Marketing", "Unilever"));
+  gyansys.addIntern(new Intern("Sam", "Finance", "Gyansys"));
+  gyansys.addIntern(new Intern("Ravi", "HR", "Employee Engagement"));
   
-  // Display all interns
   gyansys.showInterns();
   
