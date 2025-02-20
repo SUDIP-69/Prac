@@ -1,0 +1,23 @@
+<template>
+  <lightning-card title="AccountSearch">
+      <lightning-input class="slds-p-top_large"
+      type="search"
+      placeholder="Enter Account Name ..."
+      value={searchKey}
+      onchange={handleSearchKey}></lightning-input>
+
+      <lightning-datatable
+        key-field="id"
+        data={data}
+        columns={columns}
+        onrowaction={handleAction}
+        hide-checkbox-column
+      ></lightning-datatable>
+
+      <template lwc:if={showContact}>
+        <p>wertyu</p>
+        <p>{copyId}</p>
+          <c-related-contact record-id={copyId}></c-related-contact>
+      </template>
+  </lightning-card>
+</template>

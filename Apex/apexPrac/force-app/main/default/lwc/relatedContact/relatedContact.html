@@ -1,0 +1,12 @@
+<template>
+  <lightning-card title="Related Contact">
+      <lightning-datatable
+          key-field="id"
+          data={contactList}
+          columns={col}
+          hide-checkbox-column
+      ></lightning-datatable>
+
+      <h1>{copyId}</h1>
+  </lightning-card>
+</template>

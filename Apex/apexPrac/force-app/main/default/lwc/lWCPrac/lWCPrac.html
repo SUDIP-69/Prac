@@ -1,0 +1,20 @@
+<template>
+    <lightning-card title="Lightning Web Component Practice">
+    <lightning-icon
+        icon-name="action:approval"
+        size="large"
+        alternative-text="Indicates approval"
+    >
+    </lightning-icon>
+</lightning-card>
+
+<lightning-button label="qwerty" onclick={handleClick}>Click Here</lightning-button>
+
+<template lwc:if={error}> 
+    <error-view error={error} info={stack}></error-view>
+</template>
+
+<template lwc:else>
+    <c-show-component></c-show-component>
+</template>
+</template>

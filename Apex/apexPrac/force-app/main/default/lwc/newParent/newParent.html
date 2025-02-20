@@ -1,0 +1,19 @@
+<template>
+    <lightning-card title="newParent"
+    icon-name="utility:survey">
+<lightning-input class="slds-p-horizontal_small"
+label="Set Counter"
+type="number"
+min="0"
+max="10000"
+value={setCounter}
+onchange={handleStartChange}></lightning-input>
+
+
+<lightning-button class="slds-p-horizontal_small"
+label="add 100 to counter"
+onclick={handleMaxMinCounter}></lightning-button>
+
+<c-new-child counter={startCounter}></c-new-child>
+</lightning-card>
+</template>

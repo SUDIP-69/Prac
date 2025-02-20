@@ -1,0 +1,8 @@
+<template>
+    <lightning-card title="ParentLWC" icon-name="utility:survey">
+        <p class="slds-text-align_center"> count: {countVal}</p>
+    </lightning-card>
+
+    <!-- calling child class -->
+     <c-child00 onsubtract={handleSubtract} onadd={handleAdd} onmultiply={handleMultiply}></c-child00>
+</template>
