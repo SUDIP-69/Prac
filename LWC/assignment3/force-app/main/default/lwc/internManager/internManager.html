@@ -1,9 +1,32 @@
 <template>
-    <lightning-card title="Intern Manager">
-      <lightning-input class="slds-m-around_medium" label="Intern Name" value={internName}></lightning-input>
-      <lightning-input class="slds-m-around_medium" label="Intern Department" value={internDepartment}></lightning-input>
-      <lightning-input class="slds-m-around_medium" label="Intern Project" value={internProject}></lightning-input>
-      <lightning-button class="slds-m-around_medium" label="Submit" onclick={saveIntern}></lightning-button>
+    <lightning-card>
+        <div>
+            <lightning-input class="slds-m-around_medium" label="Intern Name" value={name} onchange={handleNameChange}
+                placeholder="Enter intern name ..." required></lightning-input>
 
-      </lightning-card>
+            <lightning-input class="slds-m-around_medium" label="Intern Department" value={department}
+                onchange={handleDepartmentChange} placeholder="Enter intern department ..." required></lightning-input>
+
+            <lightning-input class="slds-m-around_medium" label="Intern Project" value={project}
+                onchange={handleProjectChange} placeholder="Enter intern project ..." required></lightning-input>
+
+            <lightning-button variant="success" label="Submit" class="slds-m-around_medium slds-float_right"
+                title="Submit" onclick={handleSubmit}></lightning-button>
+
+            <template lwc:if={error}>
+                <p class="slds-text-color_error slds-m-top_medium">{error}</p>
+            </template>
+        </div>
+
+        <div class="slds-m-around_medium">
+            <h1 class="slds-m-top_large">Intern List</h1>
+            <lightning-input class="input-width" type="search" label="Search Intern Name" value={searchKey}
+                onchange={handleSearchKeyChange} placeholder="Enter intern name ..."></lightning-input>
+
+            <template if:true={interns.data}>
+                <lightning-datatable key-field="id" data={interns.data} columns={columns}
+                    hide-checkbox-column></lightning-datatable>
+            </template>
+        </div>
+    </lightning-card>
 </template>
