@@ -1,0 +1,39 @@
+<template>
+    <div class="maindiv" style={behindBgColour}>
+                <span>
+                    <div class="wrapper" style={backGraoundColour}>
+                        <header>{headerText}</header>
+                        <div class="form">
+                        <lightning-input label="Amount" type="number" value={amount} onchange={handleAmountChange}></lightning-input>
+                        <div class="drop-list">
+                        <div class="from">     
+                        <lightning-combobox name="Base_code" label="Base code" value={basecode} placeholder="Select USD"
+                            options={options} onchange={handleBaseChange}>
+                        </lightning-combobox>
+                        </div>
+                        <div class="slds-p-top_large">
+                            <lightning-icon icon-name="utility:change_record_type"></lightning-icon>
+                        </div>
+                        <div class="to">
+                        <lightning-combobox name="Target_code" label="Target code" value={targetcode}
+                            placeholder="Select INR" options={options} onchange={handleTargetChange}>
+                        </lightning-combobox>
+                        </div>
+                        <div >
+                        </div>    
+                        </div>
+                        <div class="exchange-rate">
+                            <button onclick={changeCurrency} style={convertButtonColour}>Convert</button>
+                        </div> 
+                        <hr>       
+                        <div class="resultamount">
+                            <template if:true={isLoaded}>
+                                <lightning-spinner alternative-text="Loading" size="x-small"></lightning-spinner>
+                            </template>
+                            <strong style={textColour}>{conversionresult}</strong>
+                        </div>
+                    </div>
+            </div>
+        </span>
+    </div>
+</template>

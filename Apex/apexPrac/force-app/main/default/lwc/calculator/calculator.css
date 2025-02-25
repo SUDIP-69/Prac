@@ -1,0 +1,123 @@
+.drapper{
+    width: 400px;
+    border-radius: 7px;
+    background: #f3f6f7;
+    box-shadow: 7px 7px 20px rgba(52, 26, 197, 0.772);
+    margin-top: 80px;
+    margin-right: 50lvb;
+    justify-content: center;
+}
+.drapper header{
+    font-size: 28px;
+    font-weight: 500;
+    text-align: center;
+}
+.resultamount{
+    font-size: 28px;
+    font-weight: 500;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+  }
+.maindiv{
+    min-height: 75vh;
+    background-color: #f5f9fad3;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-style: solid;
+    padding-bottom: 70px;
+    
+  }
+  .wrapper{
+    margin-top: 100px;
+    width: 350px;
+    padding: 30px;
+    border-radius: 7px;
+    background: #f3f6f7;
+    box-shadow: 7px 7px 20px rgba(57, 26, 197, 0.772);
+    align-items: center;
+    margin-left: 30%;
+  }
+  .wrapper header{
+    font-size: 28px;
+    font-weight: 500;
+    text-align: center;
+  }
+  .wrapper .form{
+    margin: 40px 0 20px 0;
+  }
+  .form :where(input, select, button){
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    display: flex;
+  }
+  .form .drop-list{
+    display: flex;
+    margin-top: 20px;
+    margin-left: 20px;
+    align-items: center;
+    justify-content:space-between;
+  }
+  .drop-list .select-box{
+    display: flex;
+    width: 115px;
+    height: 45px;
+    align-items: center;
+    border-radius: 5px;
+    justify-content: center;
+    border: 1px solid #999;
+  }
+  .select-box img{
+    max-width: 21px;
+  }
+  .select-box select{
+    width: auto;
+    font-size: 16px;
+    background: none;
+    margin: 0 -5px 0 5px;
+  }
+  .select-box select::-webkit-scrollbar{
+    width: 8px;
+  }
+  .select-box select::-webkit-scrollbar-track{
+    background: #fff;
+  }
+  .select-box select::-webkit-scrollbar-thumb{
+    background: #888;
+    border-radius: 8px;
+    border-right: 2px solid #ffffff;
+  }
+  .drop-list .icon{
+    cursor: pointer;
+    margin-top: 30px;
+    font-size: 22px;
+  }
+  .form .exchange-rate{
+    font-size: 17px;
+    margin: 20px 0 30px;
+    text-align: center;
+  }
+   .form button{
+    height: 50px;
+    color: #fff;
+    font-size: 17px;
+    cursor: pointer;
+    justify-content: center;
+    background: #675AFE;
+    transition: 0.3s ease;
+  }
+ .form button:hover{
+    background: #4534fe;
+  }
+  @media only screen and (max-width: 600px) {
+     div {
+      display: flex;
+      flex-direction: column;
+    }
+    .wrapper {
+      margin-left: 0;
+      width: 100%;
+    }
+  }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+      <target>lightning__AppPage</target>
+      <target>lightning__HomePage</target>
+      <target>lightningCommunity__Page</target>
+      <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+      <targetConfig targets="lightningCommunity__Default">
+        <property name="headerText" type="String" label="Header text" default="Currency calculator"/>
+        <property name="rateResult" type="Color" label="Result colour"/>
+        <property name="bgColor" type="Color" label="Background colour"/>
+        <property name="decimalDigit" type="Integer" label="Change decimal digit"/>
+        <property name="backBgColor" type="Color" label="Change colour Behind Background"/>
+        <property name="buttonColor" type="Color" label="Change button colour"/>
+      </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

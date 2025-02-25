@@ -1,30 +1,21 @@
-public with sharing class internManager {
-
-
-    @AuraEnabled(cacheable=true)
-    public static List<Intern__c> getInterns(String name) {
-        name = '%' + name + '%';
-        return [SELECT Name, Department__c, Project__c FROM Intern__c WHERE Name LIKE :name];
-    }
-
-    @AuraEnabled(cacheable=true)
-    public static String addIntern(List<Intern__c> intern) {
-
-        List<String> internNames = new List<String>();
-        for (Intern__c i : intern) {
-            internNames.add(i.Name);
+public with sharing class internManager  {
+        @AuraEnabled(cacheable=true)
+        public static List<Intern__c> getInterns() {
+            return [SELECT Id, Name, Department__c, Project__c FROM Intern__c];
         }
-
-            List<Intern__c> interns = [SELECT Name, Department__c, Project__c FROM Intern__c WHERE Name IN :internNames];
-        if (interns.size() > 0) {
-            return 'Intern with the same name already exists';
+     
+        @AuraEnabled
+        public static Boolean checkUniqueName(String name) {
+            Integer count = [SELECT COUNT() FROM Intern__c WHERE Name = :name];
+            return count == 0;
         }
-
-        try {
+     
+        @AuraEnabled
+        public static void createIntern(String name, String department, String project) {
+            Intern__c intern = new Intern__c();
+            intern.Name = name;
+            intern.Department__c = department;
+            intern.Project__c = project;
             insert intern;
-            return 'Intern added successfully';
-        } catch (Exception e) {
-            return e.getMessage();
         }
     }
-}
