@@ -1,4 +1,5 @@
 import { LightningElement, api } from 'lwc';
+import getCurrencyConversion from '@salesforce/apex/CurrencyConverterController.getCurrencyConversion';
 
 const endpoint = 'https://marketdata.tradermade.com';
 
@@ -41,41 +42,39 @@ export default class calculator extends LightningElement {
     }
     handleAmountChange(event) {
         this.amount = event.target.value;
+        console.log("Amount: " + this.amount);
+        
     }
 
     changeCurrency() {
+        if (!this.amount || !this.basecode || !this.targetcode) {
+            console.error('All fields are required');
+            return;
+        }
+        
         this.isLoaded = true;
-        //  https://v6.exchangerate-api.com/v6/ceda3ce2afbef61bb68ba48f/pair/{this.basecode}/{this.targetcode}`
-        // fetch(
-        //     endpoint + '/api/v1/convert?api_key=' + apiKey + '&from=USD&to=INR&amount=' + this.amount,
-        //     // endpoint + '/v6/' + apiKey + '/pair/' + this.basecode + '/' + this.targetcode + '/' + this.amount,
-        //     {
-        //         method: "GET"
-        //     }
-        // )
-        //     .then(result => result.json())
-        //     .then((resp) => {
-        //         console.log("resp.conversion_rate: " + resp.conversion_rate);
-        //         console.log("resp.result: " + resp.result);
-        //         if (resp.result == "success") {
-        //             setTimeout(() => {
-        //                 this.isLoaded = false;
-        //             }, 1300)
-        //             this.conversionresult = (resp.conversion_result).toFixed(this.decimalDigit);
-
-        //             console.log("--conversionresult--: " + this.conversionresult)
-        //         }
-        //     })
-        //     .catch(error => {
-        //         console.log("error test: " + JSON.stringify(error));
-        //     })
-
-        const response = fetch(`https://marketdata.tradermade.com/api/v1/convert?api_key=Y-iFxpQB8vCsv_l4T3i1&from=USD&to=INR&amount=10.2`, {method: "GET"});
-        console.log("response: " + response);        
-        const data = response.json();
-        console.log("data: " + data);
-        this.conversionresult = data.total.toFixed(this.decimalDigit);
-        console.log("conversionresult: " + this.conversionresult);
+        
+        getCurrencyConversion({ 
+            fromCurrency: this.basecode, 
+            toCurrency: this.targetcode, 
+            amount: parseFloat(this.amount)
+        })
+        .then(result => {
+            if (result != null) {
+                this.conversionresult = result.toFixed(this.decimalDigit || 2);
+            } else {
+                console.error('Conversion returned null');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            if (error.body && error.body.message) {
+                console.error('Detailed error:', error.body.message);
+            }
+        })
+        .finally(() => {
+            this.isLoaded = false;
+        });
     }
     get options() {
         return [
