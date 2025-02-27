@@ -1,10 +1,6 @@
 import { LightningElement, api } from 'lwc';
 import getCurrencyConversion from '@salesforce/apex/CurrencyConverterController.getCurrencyConversion';
 
-const endpoint = 'https://marketdata.tradermade.com';
-
-const apiKey = 'Y-iFxpQB8vCsv_l4T3i1';
-
 export default class calculator extends LightningElement {
     isLoaded = false;
     @api amount = 1;

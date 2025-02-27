@@ -30,7 +30,7 @@
                             <template if:true={isLoaded}>
                                 <lightning-spinner alternative-text="Loading" size="x-small"></lightning-spinner>
                             </template>
-                            <strong style={textColour}>{conversionresult}</strong>
+                            <strong style={textColour} lwc:if={conversionresult}>{amount} {basecode} = {conversionresult} {targetcode}</strong>
                         </div>
                     </div>
             </div>
