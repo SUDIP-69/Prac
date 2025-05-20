@@ -9,7 +9,7 @@ public class missingNum
         int sum=0;
         for(int i:a)
             sum+=i;
-        int calc = n*(n+1)/2;
-        System.out.print(calc-sum);
+        int total = n*(n+1)/2;
+        System.out.print(total-sum);
     }
 }
